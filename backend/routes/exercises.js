@@ -25,12 +25,13 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 })
 
-router.post('/add', upload.single('image'), (req, res) => {
-//router.route('/add', upload.single('image')).post((req, res) => {
+//router.post('/add', upload.single('image'), (req, res) => {
+router.route('/add').post((req, res) => {
     console.log(req.file)
   const exerciseName = req.body.exerciseName
   const description = req.body.description
-  const image = req.file.path
+  //const image = req.file.path
+  const image = req.body.image
   const numberOfLifts = Number(req.body.numberOfLifts)
 
   const newExercise = new Exercise({
