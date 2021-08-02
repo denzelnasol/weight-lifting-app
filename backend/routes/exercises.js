@@ -1,21 +1,21 @@
 const router = require('express').Router()
-const multer = require('multer')
+// const multer = require('multer')
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './images/')
-    },
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + file.originalname)
-    }
-})
+// const storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//         cb(null, '../public/assets/')
+//     },
+//     filename: function(req, file, cb) {
+//         cb(null, Date.now() + file.originalname)
+//     }
+// })
 
-const upload = multer({
-    storage: storage, 
-    limits: {
-        fileSize: 1024 * 1024 * 5
-    }
-})
+// const upload = multer({
+//     storage: storage, 
+//     limits: {
+//         fileSize: 1024 * 1024 * 5
+//     }
+// })
 
 let Exercise = require('../models/exercise')
 
@@ -25,12 +25,11 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 })
 
-//router.post('/add', upload.single('image'), (req, res) => {
-router.route('/add').post((req, res) => {
-    console.log(req.file)
+router.post('/add', (req, res) => {
+  console.log(req.file)
   const exerciseName = req.body.exerciseName
   const description = req.body.description
-  //const image = req.file.path
+  // const image = req.file.path
   const image = req.body.image
   const numberOfLifts = Number(req.body.numberOfLifts)
 

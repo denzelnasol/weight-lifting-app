@@ -1,0 +1,40 @@
+.ExerciseListItem-img {
+    height: auto;
+    max-height: 250px;
+    width: auto;
+    max-width: 250px;
+  }
+
+  .navbar.transparent.navbar-inverse .navbar-inner {
+    border-width: 0px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: rgba(0,0,0,0.0);
+    background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+    background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+    background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+}
+
+.text-large {
+  font-size: 200%;
+}
+
+.card-img-height {
+  height: 100%;
+}
+
+.card-container {
+   margin:5px 5px 5px 5px;
+   width:auto;
+   height:auto;
+   position:relative;
+   overflow:hidden;
+   border:solid;
+   overflow: auto;
+   float:left;
+}
+
+.exercises-container {
+  display: flex;
+  flex-wrap: wrap;
+}

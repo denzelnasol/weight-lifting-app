@@ -5,18 +5,8 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-        <Link to="/" className="navbar-brand">ExcerTracker</Link>
-        <div className="collpase navbar-collapse">
-          <ul className="navbar-nav mr-auto">
-            <li className="navbar-item">
-              <Link to="/" className="nav-link">Exercises</Link>
-            </li>
-            <li className="navbar-item">
-              <Link to="/create" className="nav-link">Create Exercise</Link>
-            </li>
-          </ul>
-        </div>
+      <nav class="navbar transparent navbar-inverse py-5">
+        <span class="navbar-inner text-white text-large">Excercises</span>
       </nav>
     )
   }
