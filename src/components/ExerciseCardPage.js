@@ -1,7 +1,6 @@
 import ExercisesCardList from './ExercisesCardList'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
-import Navbar from './Navbar';
 
 const ExerciseCardPage = () => {
 
@@ -18,7 +17,6 @@ const ExerciseCardPage = () => {
 
     return (
         <div className='container'>
-            <Navbar />
             <ExercisesCardList exercises={exercises} />
         </div>
     )
