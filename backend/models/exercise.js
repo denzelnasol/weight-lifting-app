@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { updateParenthesizedType } = require('typescript')
 
 const Schema = mongoose.Schema
 

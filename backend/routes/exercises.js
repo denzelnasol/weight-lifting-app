@@ -1,21 +1,4 @@
 const router = require('express').Router()
-// const multer = require('multer')
-
-// const storage = multer.diskStorage({
-//     destination: function(req, file, cb) {
-//         cb(null, '../public/assets/')
-//     },
-//     filename: function(req, file, cb) {
-//         cb(null, Date.now() + file.originalname)
-//     }
-// })
-
-// const upload = multer({
-//     storage: storage, 
-//     limits: {
-//         fileSize: 1024 * 1024 * 5
-//     }
-// })
 
 let Exercise = require('../models/exercise')
 
@@ -29,7 +12,6 @@ router.post('/add', (req, res) => {
   console.log(req.file)
   const exerciseName = req.body.exerciseName
   const description = req.body.description
-  // const image = req.file.path
   const image = req.body.image
   const numberOfLifts = Number(req.body.numberOfLifts)
 
