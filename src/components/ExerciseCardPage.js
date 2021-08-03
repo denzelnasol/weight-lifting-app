@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-import Exercises from './Exercises'
-import Navbar from './Navbar'
+import ExercisesCardList from './ExercisesCardList'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
+import Navbar from './Navbar';
 
-const ExerciseList = () => {
+const ExerciseCardPage = () => {
 
     const [exercises, setExercises] = useState([])
 
@@ -19,9 +18,10 @@ const ExerciseList = () => {
 
     return (
         <div className='container'>
-            <Exercises exercises={exercises} />
+            <Navbar />
+            <ExercisesCardList exercises={exercises} />
         </div>
     )
 }
 
-export default ExerciseList
+export default ExerciseCardPage

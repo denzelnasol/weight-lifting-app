@@ -1,34 +1,17 @@
-import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-import Navbar from './components/Navbar'
-import ExerciseList from './components/ExerciseList'
-
-import axios from 'axios';
-import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import ExercisePage from './components/ExercisePage'
+import ExerciseCardPage from './components/ExerciseCardPage'
 
 const App = () => {
   
-  const [exercises, setExercises] = useState( [] )
-
-  useEffect(() => {
-    const getExercises = async () => {
-      const exercisesFromServer = await axios('http://localhost:5000/exercises/')
-      setExercises(exercisesFromServer.data)
-    }
-
-    getExercises()
-  }, [])
-
   return (
-    <Router>
-      <div className='container'>
-        <Navbar/>
-        <br/>
-        <Route path='/' exact component={ExerciseList}/>
-      </div>
-    </Router>
+    <>
+      <Router>
+          <Route exact path='/' component={ExerciseCardPage} />
+          <Route path='/exercises/:exerciseId' component={ExercisePage}/>
+      </Router>
+    </>
   )
 }
 
