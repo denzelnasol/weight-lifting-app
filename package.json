@@ -21,8 +21,7 @@
     "start": "react-scripts start nodemon",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -42,9 +41,6 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {},
+  "devDependencies": {}
 
-  "engines": {
-    "node": "10.16.0"
-}
 }
