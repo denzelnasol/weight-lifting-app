@@ -5,7 +5,7 @@ const ExercisesCardList = ({ exercises }) => {
     return (
         <div className='exercises-container'>
             {exercises.map((exercise) => (
-                <ExerciseCard key={exercise.id} exercise={exercise}
+                <ExerciseCard key={exercise._id} exercise={exercise}
                 />
             ))}
         </div>
