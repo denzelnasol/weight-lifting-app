@@ -1,4 +1,4 @@
-const ExercisePageJumbotronContainer = ({ exercise }) => {
+const ExercisePageJumbotron = ({ exercise }) => {
     return (
         <div className='jumbotron jumbotron-fluid rounded' style={{ backgroundColor: 'white', padding: '2%' }}>
             <div className='row'>
@@ -13,4 +13,4 @@ const ExercisePageJumbotronContainer = ({ exercise }) => {
     )
 }
 
-export default ExercisePageJumbotronContainer
+export default ExercisePageJumbotron

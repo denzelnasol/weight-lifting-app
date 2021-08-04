@@ -1,5 +1,6 @@
 const router = require('express').Router()
 
+const Exercise = require('../models/exercise')
 let ExerciseInformation = require('../models/exerciseInformation')
 
 router.route('/').get((req, res) => {
@@ -34,6 +35,20 @@ router.route('/id').delete((req, res) => {
     ExerciseInformation.findByIdAndDelete(req.params.id)
         .then(() => res.json('Lift deleted.'))
         .catch(err => res.status(400).json('Error: ' + err))
+})
+
+router.route('update/:id').post((req, res) => {
+    ExerciseInformation.findById(req.params.id) 
+        .then(exerciseInformation => {
+            exerciseInformation.exerciseName = req.body.exerciseName
+            exerciseInformation.bodyWeightLBS = req.body.bodyWeightLBS
+            exerciseInformation.liftWeightLBS = req.body.liftWeightLBS
+
+        exerciseInformation.save()
+            .then(() => res.json('Exercise Lift Updated'))
+            .catch(err => res.status(400).json('Error: ' + err))
+    })
+    .catch(err => res.status(400).json('Error: ' + err))
 })
 
 module.exports = router

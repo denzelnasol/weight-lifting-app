@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const AddLiftContainer = ({ onAdd }) => {
+const AddLift = ({ onAdd }) => {
 
     const [bodyWeight, setBodyWeight] = useState('')
     const [liftWeight, setLiftWeight] = useState('')
@@ -36,4 +36,4 @@ const AddLiftContainer = ({ onAdd }) => {
     )
 }
 
-export default AddLiftContainer
+export default AddLift

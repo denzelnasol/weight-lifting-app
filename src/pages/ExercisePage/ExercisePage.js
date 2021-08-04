@@ -2,8 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import LiftList from './LiftList'
-import AddLiftContainer from './AddLiftContainer'
-import ExercisePageJumbotronContainer from './ExercisePageJumbotronContainer'
+import AddLift from './AddLift'
+import ExercisePageJumbotron from './ExercisePageJumbotron'
 
 const ExercisePage = ({ match }) => {
 
@@ -40,16 +40,18 @@ const ExercisePage = ({ match }) => {
 
     const addLift = (lift) => {
 
-        let databody = {
+        let newLift = {
             "exerciseName": exercise.exerciseName,
             "bodyWeightLBS": lift.bodyWeight,
             "liftWeightLBS": lift.liftWeight
         }
 
+        updateNumberOfLifts()
+
 
         return fetch('http://localhost:5000/exercisesInformation/add', {
             method: 'POST',
-            body: JSON.stringify(databody),
+            body: JSON.stringify(newLift),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -59,13 +61,32 @@ const ExercisePage = ({ match }) => {
         .then(window.location.reload())
     }
 
+    const updateNumberOfLifts = () => {
+        let test = {
+            "exerciseName": exercise.exerciseName,
+            "description": exercise.description,
+            "image": exercise.image,
+            "numberOfLifts": exercise.numberOfLifts + 1
+        }
+
+        return fetch(`http://localhost:5000/exercises/update/${exerciseId}`, {
+            method: 'POST',
+            body: JSON.stringify(test),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
 
     return (
         <>
 
             {!exerciseIsLoading && !liftIsLoading && (
                 <div style={{ paddingBottom: '2%' }}>
-                    <ExercisePageJumbotronContainer exercise={exercise}/>
+                    <ExercisePageJumbotron exercise={exercise}/>
 
                     <div className='row'>
                         <div className='col col-md-4'>
@@ -95,7 +116,7 @@ const ExercisePage = ({ match }) => {
                             <div className='container rounded' style={{ backgroundColor: 'white', padding: '2%', marginTop: '1.5%' }}>
                                 <div className='row align-items start'>
                                     <div style={{ fontSize: '1.5rem ' }}>
-                                        <AddLiftContainer onAdd={addLift}/>
+                                        <AddLift onAdd={addLift}/>
                                     </div>
                                 </div>
                             </div>
