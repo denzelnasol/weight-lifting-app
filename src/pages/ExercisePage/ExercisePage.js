@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-
+import axios from 'axios'
 import LiftList from './LiftList'
+import AddLiftContainer from './AddLiftContainer'
+import ExercisePageJumbotronContainer from './ExercisePageJumbotronContainer'
 
 const ExercisePage = ({ match }) => {
 
@@ -26,16 +28,36 @@ const ExercisePage = ({ match }) => {
     }, [exerciseId]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/exercisesInformation', {})
-            .then((res) => res.json())
-            .then((response) => {
-                setExerciseLifts(response)
-                setLiftIsLoading(false)
-                console.log(exerciseLifts)
-            })
-            .catch((error) => console.log(error))
+        const getExerciseLifts = async () => {
+            const exercisesFromServer = await axios('http://localhost:5000/exercisesInformation')
+            setExerciseLifts(exercisesFromServer.data)
+            setLiftIsLoading(false)
+        }
+
+        getExerciseLifts()
+
     }, []);
 
+    const addLift = (lift) => {
+
+        let databody = {
+            "exerciseName": exercise.exerciseName,
+            "bodyWeightLBS": lift.bodyWeight,
+            "liftWeightLBS": lift.liftWeight
+        }
+
+
+        return fetch('http://localhost:5000/exercisesInformation/add', {
+            method: 'POST',
+            body: JSON.stringify(databody),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .then(window.location.reload())
+    }
 
 
     return (
@@ -43,21 +65,12 @@ const ExercisePage = ({ match }) => {
 
             {!exerciseIsLoading && !liftIsLoading && (
                 <div style={{ paddingBottom: '2%' }}>
-                    <div className='jumbotron jumbotron-fluid rounded' style={{ backgroundColor: 'white', padding: '2%' }}>
-                        <div className='row'>
-                            <h1 className='col-md display-4'>
-                                <img src={exercise.image} width="50" height="65" style={{ marginRight: '1rem' }} alt="" />
-                                {exercise.exerciseName} Standards</h1>
-                        </div>
-                        <div className='row'>
-                            <h3 className='lead'>{exercise.description}</h3>
-                        </div>
-                    </div>
+                    <ExercisePageJumbotronContainer exercise={exercise}/>
 
                     <div className='row'>
                         <div className='col col-md-4'>
                             <div className='container rounded' style={{ backgroundColor: 'white', padding: '4%', fontWeight: '900rem', marginTop: '2%' }}>
-                                <div className='row align-items start jumbotron' style={{ fontWeight: '700' }}>
+                                <div className='row align-items start' style={{ fontWeight: '700' }}>
                                     <div style={{ fontSize: '2.20rem ' }}>
                                         Male {exercise.exerciseName} Lift History in LBS
                                     </div>
@@ -75,14 +88,14 @@ const ExercisePage = ({ match }) => {
 
                                     <hr style={{ height: '0.1rem' }} />
                                 </div>
-                                <LiftList lifts={exerciseLifts} exerciseName={exercise.exerciseName}/>
+                                <LiftList lifts={exerciseLifts} exerciseName={exercise.exerciseName} />
                             </div>
                         </div>
                         <div className='col col-md-6'>
-                            <div className='container rounded' style={{ backgroundColor: 'white', padding: '2%', fontWeight: '900rem', marginTop: '2%' }}>
-                                <div className='row align-items start jumbotron' style={{ fontWeight: '700' }}>
-                                    <div style={{ fontSize: '2.20rem ' }}>
-                                        Add A Lift
+                            <div className='container rounded' style={{ backgroundColor: 'white', padding: '2%', marginTop: '1.5%' }}>
+                                <div className='row align-items start'>
+                                    <div style={{ fontSize: '1.5rem ' }}>
+                                        <AddLiftContainer onAdd={addLift}/>
                                     </div>
                                 </div>
                             </div>

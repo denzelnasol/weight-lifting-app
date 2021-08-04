@@ -3,7 +3,7 @@ import Lift from './Lift'
 
 const LiftList = ({ lifts, exerciseName }) => {
 
-    var liftFilter = lifts.filter((lift) => {
+    let liftFilter = lifts.filter((lift) => {
         return lift.exerciseName === exerciseName
     })
 

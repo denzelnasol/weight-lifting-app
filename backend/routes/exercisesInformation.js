@@ -9,7 +9,6 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/add').post((req, res) =>{
-    console.log(req.file)
     const exerciseName = req.body.exerciseName
     const bodyWeightLBS = Number(req.body.bodyWeightLBS)
     const liftWeightLBS = Number(req.body.liftWeightLBS)
