@@ -8,7 +8,7 @@ const LiftHistory = ({ lifts, exerciseName }) => {
     })
 
     return (
-        <div className='container rounded vertical-scrollable' style={{ backgroundColor: 'white', padding: '4%', fontWeight: '900rem' }}>
+        <div className='container rounded overflow-auto' style={{ backgroundColor: 'white', padding: '4%', fontWeight: '900rem', height:'400px' }}>
             <div style={{ fontSize: '2.20rem ' }}>
                 Male {exerciseName} Lift History in LBS
             </div>

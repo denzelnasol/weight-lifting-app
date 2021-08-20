@@ -2,6 +2,12 @@ body {
   background-attachment: fixed;
 }
 
+/* tbody {
+  height: 40px;
+  overflow-y: scroll;
+  width: 100%;
+} */
+
 .ExerciseListItem-img {
     height: auto;
     max-height: 50px;
