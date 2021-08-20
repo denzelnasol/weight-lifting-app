@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import LiftList from './LiftList'
+import LiftHistory from './LiftHistory'
 import AddLift from './AddLift'
 import ExercisePageJumbotron from './ExercisePageJumbotron'
+import LiftAverages from './LiftAverages'
 
 const ExercisePage = ({ match }) => {
 
@@ -56,9 +57,9 @@ const ExercisePage = ({ match }) => {
                 'Content-Type': 'application/json'
             },
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .then(window.location.reload())
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .then(window.location.reload())
     }
 
     const updateNumberOfLifts = () => {
@@ -76,51 +77,28 @@ const ExercisePage = ({ match }) => {
                 'Content-Type': 'application/json'
             },
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+            .then(res => res.json())
+            .then(data => console.log(data))
     }
 
 
     return (
         <>
-
             {!exerciseIsLoading && !liftIsLoading && (
-                <div style={{ paddingBottom: '2%' }}>
-                    <ExercisePageJumbotron exercise={exercise}/>
+                <div>
+                    <ExercisePageJumbotron exercise={exercise} />
 
-                    <div className='row'>
-                        <div className='col col-md-4'>
-                            <div className='container rounded' style={{ backgroundColor: 'white', padding: '4%', fontWeight: '900rem', marginTop: '2%' }}>
-                                <div className='row align-items start' style={{ fontWeight: '700' }}>
-                                    <div style={{ fontSize: '2.20rem ' }}>
-                                        Male {exercise.exerciseName} Lift History in LBS
-                                    </div>
-                                </div>
-
-                                <hr style={{ height: '0.2rem' }} />
-
-                                <div className='row align-items start' style={{ fontWeight: '700' }}>
-                                    <div className="col">
-                                        Bodyweight
-                                    </div>
-                                    <div className="col">
-                                        Lift Weight
-                                    </div>
-
-                                    <hr style={{ height: '0.1rem' }} />
-                                </div>
-                                <LiftList lifts={exerciseLifts} exerciseName={exercise.exerciseName} />
-                            </div>
+                    <div className='row' style={{marginTop:'2%'}}>
+                        <div className='col col-md-6'>
+                            <LiftHistory lifts={exerciseLifts} exerciseName={exercise.exerciseName} />
                         </div>
                         <div className='col col-md-6'>
-                            <div className='container rounded' style={{ backgroundColor: 'white', padding: '2%', marginTop: '1.5%' }}>
-                                <div className='row align-items start'>
-                                    <div style={{ fontSize: '1.5rem ' }}>
-                                        <AddLift onAdd={addLift}/>
-                                    </div>
-                                </div>
-                            </div>
+                            <AddLift onAdd={addLift} />
                         </div>
+                    </div>
+
+                    <div className='row '> 
+                        <LiftAverages lifts={exerciseLifts} exerciseName={exercise.exerciseName} />
                     </div>
                 </div>
             )}
