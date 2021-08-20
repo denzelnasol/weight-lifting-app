@@ -97,7 +97,7 @@ const ExercisePage = ({ match }) => {
                         </div>
                     </div>
 
-                    <div className='row '> 
+                    <div className='row'> 
                         <LiftAverages lifts={exerciseLifts} exerciseName={exercise.exerciseName} />
                     </div>
                 </div>
