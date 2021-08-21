@@ -7,8 +7,20 @@ const LiftHistory = ({ lifts, exerciseName }) => {
         return lift.exerciseName === exerciseName
     })
 
+    const render = () => {
+        if (liftFilter.length == 0) {
+            return true
+        }
+        else {
+            liftFilter.map((lift) => (
+                <Lift key={lift._id} lift={lift}
+                />
+            ))
+        }
+    }
+
     return (
-        <div className='container rounded overflow-auto' style={{ backgroundColor: 'white', padding: '4%', fontWeight: '900rem', height:'400px' }}>
+        <div className='container rounded overflow-auto' style={{ backgroundColor: 'white', padding: '4%', height:'400px' }}>
             <div style={{ fontSize: '2.20rem ' }}>
                 Male {exerciseName} Lift History in LBS
             </div>

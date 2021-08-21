@@ -88,17 +88,17 @@ const ExercisePage = ({ match }) => {
                 <div>
                     <ExercisePageJumbotron exercise={exercise} />
 
-                    <div className='row' style={{marginTop:'2%'}}>
+                    <div className='row'> 
+                        <LiftAverages lifts={exerciseLifts} exerciseName={exercise.exerciseName} />
+                    </div>
+
+                    <div className='row' style={{marginTop:'2%', marginBottom:'2%'}}>
                         <div className='col col-md-6'>
                             <LiftHistory lifts={exerciseLifts} exerciseName={exercise.exerciseName} />
                         </div>
                         <div className='col col-md-6'>
                             <AddLift onAdd={addLift} />
                         </div>
-                    </div>
-
-                    <div className='row'> 
-                        <LiftAverages lifts={exerciseLifts} exerciseName={exercise.exerciseName} />
                     </div>
                 </div>
             )}
