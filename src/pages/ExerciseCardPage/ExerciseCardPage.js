@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react'
 const ExerciseCardPage = () => {
 
     const [exercises, setExercises] = useState([])
-    // debugger
+    const [searchTerm, setSearchTerm] = useState('')
+
     useEffect(() => {
         const getExercises = async () => {
             const exercisesFromServer = await axios.get('http://localhost:5000/exercises/')
@@ -17,9 +18,8 @@ const ExerciseCardPage = () => {
 
     return (
         <div className='container'>
-            
-            {console.log(exercises)}
-            <ExercisesCardList exercises={exercises} />
+            <input className="form-control" type='text' placeholder='Search...' onChange={event => {setSearchTerm(event.target.value)}}/>
+            <ExercisesCardList exercises={exercises} searchTerm={searchTerm}/>
         </div>
     )
 }

@@ -2,11 +2,9 @@ body {
   background-attachment: fixed;
 }
 
-/* tbody {
-  height: 40px;
-  overflow-y: scroll;
-  width: 100%;
-} */
+input {
+  margin-bottom: 2%;
+}
 
 .ExerciseListItem-img {
     height: auto;
