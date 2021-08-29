@@ -7,17 +7,17 @@ const LiftHistory = ({ lifts, exerciseName }) => {
         return lift.exerciseName === exerciseName
     })
 
-    const render = () => {
-        if (liftFilter.length == 0) {
-            return true
-        }
-        else {
-            liftFilter.map((lift) => (
-                <Lift key={lift._id} lift={lift}
-                />
-            ))
-        }
-    }
+    // const render = () => {
+    //     if (liftFilter.length === 0) {
+    //         return true
+    //     }
+    //     else {
+    //         liftFilter.map((lift) => (
+    //             <Lift key={lift._id} lift={lift}
+    //             />
+    //         ))
+    //     }
+    // }
 
     return (
         <div className='container rounded overflow-auto' style={{ backgroundColor: 'white', padding: '4%', height:'400px' }}>

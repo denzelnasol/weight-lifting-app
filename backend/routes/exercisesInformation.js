@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-const Exercise = require('../models/exercise')
 let ExerciseInformation = require('../models/exerciseInformation')
 
 router.route('/').get((req, res) => {
@@ -9,7 +8,7 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err))
 })
 
-router.route('/add').post((req, res) =>{
+router.route('/add').post((req, res) => {
     const exerciseName = req.body.exerciseName
     const bodyWeightLBS = Number(req.body.bodyWeightLBS)
     const liftWeightLBS = Number(req.body.liftWeightLBS)
@@ -38,17 +37,17 @@ router.route('/id').delete((req, res) => {
 })
 
 router.route('update/:id').post((req, res) => {
-    ExerciseInformation.findById(req.params.id) 
+    ExerciseInformation.findById(req.params.id)
         .then(exerciseInformation => {
             exerciseInformation.exerciseName = req.body.exerciseName
             exerciseInformation.bodyWeightLBS = req.body.bodyWeightLBS
             exerciseInformation.liftWeightLBS = req.body.liftWeightLBS
 
-        exerciseInformation.save()
-            .then(() => res.json('Exercise Lift Updated'))
-            .catch(err => res.status(400).json('Error: ' + err))
-    })
-    .catch(err => res.status(400).json('Error: ' + err))
+            exerciseInformation.save()
+                .then(() => res.json('Exercise Lift Updated'))
+                .catch(err => res.status(400).json('Error: ' + err))
+        })
+        .catch(err => res.status(400).json('Error: ' + err))
 })
 
 module.exports = router
