@@ -36,10 +36,6 @@ module.exports = function validateRegisterInput(data) {
         errors.password2 = "Passwords must match"
     }
 
-    if (!Validator.isBoolean(data.isAdmin)) {
-        errors.isAdmin = "Please indicate whether admin or not"
-    }
-
     return {
         errors,
         isValid: isEmpty(errors)

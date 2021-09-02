@@ -4,7 +4,6 @@ const cors = require('cors')
 const bodyParser = require("body-parser")
 const passport = require("passport")
 
-const users = require("./routes/users");
 
 require('dotenv').config()
 
@@ -33,6 +32,7 @@ connection.once('open', () => {
 
 const exercisesRouter = require('./routes/exercises')
 const exercisesInformationRouter = require('./routes/exercisesInformation')
+const usersRouter = require("./routes/users");
 
 // Passport middleware
 app.use(passport.initialize());
@@ -41,7 +41,7 @@ require("./config/passport")(passport);
 
 app.use('/exercises', exercisesRouter)
 app.use('/exercisesInformation', exercisesInformationRouter)
-app.use('/users', users);
+app.use('/users', usersRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
